@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='ynot_project_view_form' model='ir.ui.view'>
+        <field name="name">ynot.project.form</field>
+        <field name="model">ynot.project</field>
+        <field name="arch" type="xml">
+            <form string="Project">
+                
+                <sheet>
+                    <!-- <div class="oe_button_box" name="button_box">
+                        <button name="return_action_to_open"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-book"
+                            context="{'xml_id':'fleet_vehicle_log_contract_action', 'search_default_open': 1}"
+                            help="show the contract for this vehicle">
+                            <field name="contract_count" widget="statinfo" string="Contracts"/>
+                        </button>
+                        
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div> -->
+                    <!-- <field name="image_medium" widget='image' class="oe_avatar"/> -->
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Mouse Design"/>
+                        </h1>
+                        <label for="assigned_to" class="oe_edit_only"/>
+                        <h2>
+                            <field name="assigned_to" class="oe_inline" />
+
+                        <label for="assigned_date" class="oe_edit_only"/>
+                        <field name="assigned_date" />
+                        </h2>
+
+
+                    </div>
+                    <br/><br/>
+                    <group col="6">
+                        <field name="client_company_id"/>
+                        <field name="client_id"/>
+                        <field name="revenue_opportunity"/>
+                    </group>
+                    <group col="2">
+                        <group >
+                            <!-- <label for="client_company_id"/>
+                            <div class="o_row">
+                                <field name="client_company_id" /> - 
+                                <field name="client_id" />
+                            </div> -->
+                            <label for="price_range_from"/>
+                            <div class="o_row">
+                                <field name="price_range_from"/>-
+                                <field name="price_range_to"/>
+                            </div>
+                        </group>
+                        <group >
+                            <!-- <field name="revenue_opportunity"/> -->
+                            <field name="create_uid" />
+                        </group>
+                    </group>
+                    
+                    <group string="Project Overview">
+                        <field name="project_overview" nolabel="1" placeholder="Write here all other information relative to this project"/>
+                    </group>
+
+                    <group string="Services Needed" col="6">
+                        <field name="is_design"/>
+                        <field name="is_sourcing"/>
+                        <field name="is_pricing"/>
+                    </group>
+                    <group string="Task Types" col="2" >
+                        <group string="Task Types" >
+                            <field name="task_research" />
+                            <field name="task_concept" />
+                            <field name="task_quote_overseas" colspan="4"/>
+                            <field name="task_quote_local"/>
+                            <field name="task_artwork"/>
+                            <field name="task_sample_req"/>
+                            <field name="task_sample_payment"/>
+                            <field name="task_followup"/>
+                            <field name="task_cust_po"/>
+                            <field name="task_charges"/>
+                        </group>
+                        <group string="Additional Information" >
+                            <br/>
+                            <field name="task_concept_add" attrs="{'invisible': [('task_concept','=',False)]}"/>
+                            <label for="task_quote_overseas_add"/>
+                            <div class="o_row">
+                                <field name="task_quote_overseas_add" attrs="{'invisible': [('task_quote_overseas','=',False)]}" nolabel="1"/>
+                                <field name="task_overseas_other" nolabel="1" attrs="{'invisible': [('task_quote_overseas_add','!=','other')]}"/>
+                            </div>
+                        </group>
+                    </group>
+
+                    <group col="2">
+                        <group string="Target Audience">
+                            <field name="target_audience" nolabel="1" placeholder="Describe desired audience"/>
+                        </group>
+                        <group string="Campaign Look &amp; Feel">
+                            <field name="campaign_look" nolabel="1" placeholder="Describe the desired style of the campaign"/>
+                        </group>
+                    </group>
+
+                    <group col="2">
+                        <group string="Competitive Analysis">
+                            <field name="competitive_analysis" nolabel="1" placeholder="Describe competitors, their campaign messages, research findings, and supporting information - list any document attachments"/>
+                        </group>
+                        <group string="Presentation Requirements">
+                            <field name="pre_sketches"/>
+                            <field name="pre_illustrations"/>
+                            <field name="pre_renedring"/>
+                        </group>
+                    </group>
+                    
+                    <group col="2">
+                        <group string="Projected Timeline">
+                            <label for="pro_tl_date_1"/>
+                            <div class="o_row">
+                                <field name="pro_tl_date_1"/>
+                                <field name="pro_tl_text_1" placeholder="small explaination here"/>
+                            </div>
+                            <label for="pro_tl_date_2"/>
+                            <div class="o_row">
+                                <field name="pro_tl_date_2"/>
+                                <field name="pro_tl_text_2"/>
+                            </div>
+                            <label for="pro_tl_date_3"/>
+                            <div class="o_row">
+                                <field name="pro_tl_date_3"/>
+                                <field name="pro_tl_text_3"/>
+                            </div>
+                            <label for="pro_tl_date_4"/>
+                            <div class="o_row">
+                                <field name="pro_tl_date_4"/>
+                                <field name="pro_tl_text_4"/>
+                            </div>
+                        </group>
+                        <group string="Important Date/Deadlines">
+                            <label for="imp_tl_date_1"/>
+                            <div class="o_row">
+                                <field name="imp_tl_date_1"/>
+                                <field name="imp_tl_text_1" placeholder="small explaination here"/>
+                            </div>
+                            <label for="imp_tl_date_2"/>
+                            <div class="o_row">
+                                <field name="imp_tl_date_2"/>
+                                <field name="imp_tl_text_2" />
+                            </div>
+                            <label for="imp_tl_date_3"/>
+                            <div class="o_row">
+                                <field name="imp_tl_date_3"/>
+                                <field name="imp_tl_text_3" />
+                            </div>
+                            <label for="imp_tl_date_4"/>
+                            <div class="o_row">
+                                <field name="imp_tl_date_4"/>
+                                <field name="imp_tl_text_4" />
+                            </div>
+                        </group>
+                    </group>
+
+                    <group string="Other Information">
+                        <field name="other_desc" nolabel="1" placeholder="Include any other critical information"/>
+                    </group>
+
+                    <group col="2">
+                        <group string="Comments &amp; Approval">
+                            <field name="client_contact_id" context="{'show_phone':1}"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes" nolabel="1" />
+                        </group>
+                    </group>
+
+                    <group string="Images">
+                        <field name="images" mode="tree"  nolabel="1">
+                            <!-- <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="image" widget="image" height="64" width="64"/>
+                            </tree> -->
+                        </field>
+                    </group>
+
+                </sheet>
+                    <!-- <group col="2">
+                        <group string="Additional Properties">
+                            <field name="seats" />
+                            <field name="doors" />
+                            <field name="color" />
+                        </group>
+                        <group string="Engine Options">
+                            <field name="transmission" />
+                            <field name="fuel_type" />
+                            <label for="co2"/>
+                            <div class="o_row" name="co2">
+                                <field name="co2"/><span>g/km</span>
+                            </div>
+                            <field name="horsepower" />
+                            <field name="horsepower_tax" />
+                            <label for="power"/>
+                            <div class="o_row">
+                                <field name="power"/><span>kW</span>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                </div> -->
+            </form>
+        </field>
+    </record>
+    <record id='ynot_project_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.project.tree</field>
+        <field name="model">ynot.project</field>
+        <field name="arch" type="xml">
+            <tree string="Project" >
+                <field name="name" />
+                <field name="client_id" />
+                <field name="assigned_to" />
+                <field name="assigned_date" />
+                <field name="create_uid" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id='ynot_project_action' model='ir.actions.act_window'>
+        <field name="name">Projects</field>
+        <field name="res_model">ynot.project</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Project.
+          </p>
+        </field>
+    </record>
+
+    <menuitem name="Ynot Projects" id="menu_root" sequence="115"  web_icon="ynot_custom,static/description/icon.png"/>
+    <menuitem name="Projects" parent="menu_root" id="ynot_project_menu_main" sequence="2"/>
+    <menuitem action="ynot_project_action" parent="ynot_project_menu_main" id="ynot_project_menu" />
+
+    <record id='ynot_project_image_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.project.image.tree</field>
+        <field name="model">project.image</field>
+        <field name="arch" type="xml">
+            <tree string="Images" editable="bottom">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name"/>
+                <field name="description"/>
+                <field name="image" widget="image" height="128" width="128"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
