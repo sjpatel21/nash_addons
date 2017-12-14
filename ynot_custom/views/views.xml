@@ -242,7 +242,7 @@
         </field>
     </record>
 
-    <menuitem name="Ynot Projects" id="menu_root" sequence="115"  web_icon="ynot_custom,static/description/icon.png"/>
+    <menuitem name="Project Briefs" id="menu_root" sequence="115"  web_icon="ynot_custom,static/description/icon.png"/>
     <menuitem name="Projects" parent="menu_root" id="ynot_project_menu_main" sequence="2"/>
     <menuitem action="ynot_project_action" parent="ynot_project_menu_main" id="ynot_project_menu" />
 
