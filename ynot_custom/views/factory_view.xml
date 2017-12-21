@@ -57,12 +57,21 @@
                                 <field name="fob_ship"/>
                                 <field name="exworks_ship"/>
                             </group>
+                            <separator string="Y-not Internal Use" colspan="4"/>
+                            <group colspan="2" name="internal_use">
 
-                            <group string="Y-not Internal Use" colspan="2" name="internal_use">
-                                <field name="ynot_contact_person"/>
-                                <field name="english" widget="priority"/>
-                                <field name="cleanliness" widget="priority"/>
-                                
+                                <group>
+                                    <field name="ynot_contact_person"/>
+                                    <field name="english" widget="priority"/>
+                                    <field name="cleanliness" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="rated_by"/>
+                                    <field name="reputation" widget="priority"/>
+                                    <field name="actual" widget="priority"/>
+                                    <field name="product_lead" widget="priority"/>
+                                    <field name="pricing" widget="priority"/>
+                                </group>
                             </group>
                         </page>
                         <page string="Client Information" name="client">
@@ -76,10 +85,10 @@
                         <page string="Miscellaneous Information" name="misc">
                             <group>
                                 <group>
-                                    <field name="sample_charges" />
-                                    <field name="con_orders" />
-                                    <field name="con_cont" />
-                                    <field name="prod_testing"/>
+                                    <field name="sample_charges" widget="radio"/>
+                                    <field name="con_orders" widget="radio" />
+                                    <field name="con_cont" widget="radio"/>
+                                    <field name="prod_testing" widget="radio"/>
                                 </group>
                                 <group>
                                     <field name="is_prd_engg" />

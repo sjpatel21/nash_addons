@@ -149,10 +149,10 @@ class YnotFactory(models.Model):
     catalog_updated = fields.Char("How often updated ?")
 
     # General Financial Info
-    sale_ten_three = fields.Float("Sale from 10 Yrs Ago to Last 3 Yrs")
-    sale_three_three = fields.Float("Sale from 3 Yrs Ago to Last 3 Yrs")
-    sale_two_three = fields.Float("Sale from 2 Yrs Ago to Last 3 Yrs")
-    sale_last_year = fields.Float("Sale from Last Year")
+    sale_ten_three = fields.Float("Sale in 2010")
+    sale_three_three = fields.Float("Sale in 2015")
+    sale_two_three = fields.Float("Sale in 2016")
+    sale_last_year = fields.Float("Sale in 2017")
 
     # Government Licenses
     local_lic = fields.Char("Local")
@@ -182,10 +182,24 @@ class YnotFactory(models.Model):
     )
 
     # misc info
-    sample_charges = fields.Char("Sample Charges (or Free)")
-    con_orders = fields.Char("Consolidation of Orders")
+    sample_charges = fields.Selection(
+        string='Sample Charges',
+        selection=[('free', 'FREE'), ('charged', 'CHARGED')]
+    )
+    con_orders = fields.Selection(
+        string='Consolidation of Orders',
+        selection=[('yes', 'YES'), ('no', 'NO')]
+    )
     con_cont = fields.Char("Consolidation of Containers")
-    prod_testing = fields.Char("Product Testing")
+    con_cont = fields.Selection(
+        string='Consolidation of Containers',
+        selection=[('yes', 'YES'), ('no', 'NO')]
+    )
+    prod_testing = fields.Selection(
+        string='Product Testing',
+        selection=[('yes', 'YES'), ('no', 'NO')]
+    )
+
     is_prd_engg = fields.Boolean("Engineering")
     is_threed_modelling = fields.Boolean("3D Modelling")
     acceptable_formats = fields.Char("List of Acceptable Formats")
@@ -224,15 +238,36 @@ class YnotFactory(models.Model):
 
     # internal use
     ynot_contact_person = fields.Many2one("res.users", "Y-not Contact Person")
+    rated_by = fields.Many2one("res.users", "Rated By")
     english = fields.Selection(
         string='English',
-        selection=[('1', 'Very Low'), ('2', 'Low'),
-                   ('3', 'Normal'), ('4', 'High'), ('5', 'Very High')]
+        selection=[('0', 'Very Low'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
     )
     cleanliness = fields.Selection(
         string='Cleanlinesss',
-        selection=[('1', 'Very Low'), ('2', 'Low'),
-                   ('3', 'Normal'), ('4', 'High'), ('5', 'Very High')]
+        selection=[('0', 'None'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
+    )
+    reputation = fields.Selection(
+        string='Reputation QUALITY',
+        selection=[('0', 'None'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
+    )
+    actual = fields.Selection(
+        string='Actual QUALITY',
+        selection=[('0', 'None'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
+    )
+    product_lead = fields.Selection(
+        string='Product LEADTIMES',
+        selection=[('0', 'None'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
+    )
+    pricing = fields.Selection(
+        string='PRICING',
+        selection=[('0', 'None'), ('1', 'Low'),
+                   ('2', 'Normal'), ('3', 'High'), ('4', 'Very High'), ('5', 'Max')]
     )
 
 
@@ -267,4 +302,3 @@ class YnotFactoryContact(models.Model):
     cell_phone = fields.Char("CellPhone")
     city = fields.Char("City")
     country_id = fields.Many2one('res.country', 'Country')
-    
