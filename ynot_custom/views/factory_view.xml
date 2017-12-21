@@ -13,9 +13,9 @@
                             <field name="name"/>
                         </h1>
                         <label for="company_address" class="oe_edit_only"/>
-                        <h2>
+                        <h3>
                             <field name="company_address" class="oe_inline" />
-                        </h2>
+                        </h3>
                     </div>
 
                     <group >
@@ -90,6 +90,17 @@
                             </group>
                         </page>
                         <page string="Contact Information" name="client">
+                            <group>
+                                <group>
+                                    <field name="company_contact"/>
+                                    <field name="sale_managers"/>
+                                    <field name="head_of_aperation"/>
+                                </group>
+                                <group>
+                                    <field name="c_level_position"/>
+                                    <field name="owner"/>
+                                </group>
+                            </group>
                             <group col="2" >
                                 <field name="factory_contact_ids" nolabel="1"/>
                             </group>
@@ -98,7 +109,6 @@
                             <group >
                                 <group>
                                     <field name="samples"/>
-                                    <field name="production"/>
                                 </group>
                                 <group>
                                     <field name="sample_lead_time"/>
@@ -107,111 +117,21 @@
                             </group>
                             <group >
                                 <group string="Materials">
-                                    <field name="material_ids" nolabel="1"/>
+                                    <field name="material_ids" nolabel="1" widget="many2many_tags"/>
                                 </group>
                                 <group string="Product Categories/ Ranges">
-                                    <field name="product_cat_ids" nolabel="1"/>
+                                    <field name="product_cat_ids" nolabel="1" widget="many2many_tags"/>
                                 </group>
                             </group>
 
                         </page>
                     </notebook>
-
-                    
 
                 </sheet>
             </form>
         </field>
     </record>
 
-
-    <!-- <record id='ynot_factory_view_form' model='ir.ui.view'>
-        <field name="name">ynot.factory.form</field>
-        <field name="model">ynot.factory</field>
-        <field name="arch" type="xml">
-            <form string="Factory">
-                <sheet>
-                    <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
-                        <h1>
-                            <field name="name"/>
-                        </h1>
-                        <label for="company_address" class="oe_edit_only"/>
-                        <h2>
-                            <field name="company_address" class="oe_inline" />
-                        </h2>
-                    </div>
-                  
-                    <group string="General Information">
-                        <group >
-                            <field name="nearest_port"/>-
-                            <field name="major_airport"/>
-                            <field name="year_est"/>
-                            <field name="no_of_emp"/>
-                            <field name="is_catelogs"/>
-                        </group>
-                        <group >
-                            <field name="loc_fun" />
-                            <field name="company_website" />
-                            <field name="company_cert" />
-                            <field name="ecommerce" />
-                        </group>
-                    </group>
-                    
-                    <group string="General Financial Information" >
-                        <group  >
-                            <field name="sale_ten_three" />
-                            <field name="sale_three_three" />
-                        </group>
-                        <group >
-                            <field name="sale_two_three" />
-                            <field name="sale_last_year"/>
-                        </group>
-                    </group>
-
-                    <group string="Government Licenses" >
-                        <field name="local_lic"/>
-                        <field name="state_lic"/>
-                        <field name="federal_lic"/>
-                    </group>
-                    <notebook>
-                        <page name="shipping" string="Shipping Information">
-                            <group col="4">
-                                <field name="methods_shipping"/>
-                                <field name="fob_ship"/>
-                                <field name="exworks_ship"/>
-                            </group>
-                        </page>
-                        <page string="Client Information" name="client">
-                            <group col="2" string="Major Clients">
-                                <field name="major_client_ids" nolabel="1"/>
-                            </group>
-                            <group col="2" string="Top Countries">
-                                <field name="top_country_ids" nolabel="1"/>
-                            </group>
-                        </page>
-                        <page string="Miscellaneous Information" name="misc">
-                            <group>
-                                <group>
-                                    <field name="sample_charges" />
-                                    <field name="con_orders" />
-                                    <field name="con_cont" />
-                                    <field name="prod_testing"/>
-                                </group>
-                                <group>
-                                    <field name="is_prd_engg" />
-                                    <field name="is_threed_modelling" />
-                                    <field name="acceptable_formats" />
-                                    <field name="is_accept_terms"/>
-                                </group>
-                            </group>
-                        </page>
-                    </notebook>
-                    
-                </sheet>
-            </form>
-        </field>
-    </record> -->
     <record id='ynot_factory_view_tree' model='ir.ui.view'>
         <field name="name">ynot.factory.tree</field>
         <field name="model">ynot.factory</field>
@@ -226,17 +146,86 @@
         </field>
     </record>
     
+    <record id="view_factory_filter" model="ir.ui.view">
+            <field name="name">factory.list.select</field>
+            <field name="model">ynot.factory</field>
+            <field name="arch" type="xml">
+                <search string="Search Factories">
+                    <field name="name" string="Factory Name" filter_domain="['|','|','|',('name','ilike',self),('company_address','ilike',self),('loc_fun','ilike',self), 
+                        ('company_website','ilike',self), ]"/>
+                    <field name="nearest_port"/>
+                    <field name="major_airport"/>
+                    <field name="year_est"/>
+                    <field name="no_of_emp"/>
+                    <field name="company_cert"/>
+                    <field name="ecommerce"/>
+                    <field name="sale_ten_three"/>
+                    <field name="sale_three_three"/>
+                    <field name="sale_two_three"/>
+                    <field name="sale_last_year"/>
+                    <field name="local_lic" string="Local License"/>
+                    <field name="state_lic" string="State License"/>
+                    <field name="federal_lic" string="Federal License"/>
+                    <field name="methods_shipping" string="Shipping" filter_domain="['|','|',('methods_shipping','ilike',self),('exworks_ship','ilike',self),('fob_ship','ilike',self)]"/>
+                    <field name="major_client_ids" string="Major Clients" filter_domain="[('major_client_ids.name','ilike',self)]"/>
+                    <field name="top_country_ids" string="Top Countries" filter_domain="['|', ('top_country_ids.name','ilike',self), ('top_country_ids.code','ilike',self)]"/>
+                    <field name="sample_charges" string="Miscellaneous Information" filter_domain="['|','|','|','|',('sample_charges','ilike',self),('con_orders','ilike',self),('con_cont','ilike',self), ('prod_testing','ilike',self), ('acceptable_formats','ilike',self)]"/>
+                    <field name="company_contact"/>
+                    <field name="sale_managers"/>
+                    <field name="head_of_aperation"/>
+                    <field name="c_level_position"/>
+                    <field name="owner"/>
+                    <field name="factory_contact_ids" string="Contact Information" filter_domain="['|','|','|','|', ('factory_contact_ids.name','ilike',self), ('factory_contact_ids.email','ilike',self),
+                    ('factory_contact_ids.office_phone','ilike',self), ('factory_contact_ids.cell_phone','ilike',self),
+                    ('factory_contact_ids.city','ilike',self)]"/>
+                    <field name="samples"/>
+                    <field name="material_ids" string="Materials" filter_domain="[ ('material_ids.name','ilike',self)]"/>
+                    <field name="product_cat_ids" string="Product Categories" filter_domain="[ ('product_cat_ids.name','ilike',self)]"/>
+
+
+
+                    <!-- <field name="user_id"/>
+                    <field name="user_id"/>
+                    <field name="team_id" string="Sales Channel"/>
+                    <field name="analytic_account_id"/>
+                    <field name="product_id"/>
+                    <filter string="My Orders" domain="[('user_id','=',uid)]" name="my_sale_orders_filter"/>
+                    <separator/>
+                    <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                    <separator/>
+                    <filter string="My Activities" name="activities_my"
+                        domain="[('activity_ids.user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Late Activities" name="activities_overdue"
+                        domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all records which has next action date is before today"/>
+                    <filter string="Today Activities" name="activities_today"
+                        domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Future Activities" name="activities_upcoming_all"
+                        domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
+                        ]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Salesperson" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter name="customer" string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Order Month" domain="[]" context="{'group_by':'date_order'}"/>
+                    </group> -->
+               </search>
+            </field>
+        </record>
+
     <record id='ynot_factory_action' model='ir.actions.act_window'>
         <field name="name">Factories</field>
         <field name="res_model">ynot.factory</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_factory_filter"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Click to create a new Factory.
           </p>
         </field>
     </record>
+
     <menuitem name="Factories" id="menu_factory_root" sequence="116"  web_icon="ynot_custom,static/description/icon.png"/>
     <menuitem name="Factory Information" parent="menu_factory_root" id="ynot_factory_menu_main" sequence="3"/>
     <menuitem action="ynot_factory_action" parent="ynot_factory_menu_main" id="ynot_factory_menu" />
@@ -246,7 +235,6 @@
         <field name="model">major.clients</field>
         <field name="arch" type="xml">
             <tree string="Major Clients" editable="bottom">
-                 <field name="sequence" widget="handle"/>
                  <field name="name"/>
                 <field name="per_of_business"/>
                 <field name="country_id"/>
@@ -262,12 +250,10 @@
                  
                 <field name="name"/>
                 <field name="email"/>
+                <field name="cell_phone"/>
+                <field name="office_phone"/>
+                <field name="city"/>
                 <field name="country_id"/>
-                <field name="company_contact"/>
-                <field name="sale_managers"/>
-                <field name="head_of_aperation"/>
-                <field name="c_level_position"/>
-                <field name="owner"/>
             </tree>
         </field>
     </record>
@@ -315,8 +301,8 @@
           </p>
         </field>
     </record>
-
-    <menuitem action="ynot_factory_material_action" parent="ynot_factory_menu_main" id="ynot_factory_material_menu" />
-    <menuitem action="ynot_factory_prdcat_action" parent="ynot_factory_menu_main" id="ynot_factory_prdcat_menu" />
+    <menuitem name="Configuration" parent="menu_factory_root" id="ynot_factory_menu_setting_main" sequence="10"/>
+    <menuitem action="ynot_factory_material_action" parent="ynot_factory_menu_setting_main" id="ynot_factory_material_menu" />
+    <menuitem action="ynot_factory_prdcat_action" parent="ynot_factory_menu_setting_main" id="ynot_factory_prdcat_menu" />
 
 </odoo>

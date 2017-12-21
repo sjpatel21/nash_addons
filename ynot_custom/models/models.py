@@ -197,6 +197,11 @@ class YnotFactory(models.Model):
         comodel_name='factory.contact',
         inverse_name='factory_id',
     )
+    company_contact = fields.Char("Company Contact")
+    sale_managers = fields.Char("Sale Managers")
+    head_of_aperation = fields.Char("Head of Operations")
+    c_level_position = fields.Char("C-Level Positions")
+    owner = fields.Char("Owner(s)")
 
     # business info
     material_ids = fields.Many2many(
@@ -213,10 +218,9 @@ class YnotFactory(models.Model):
         column1='factory_id',
         column2='prdcat_id',
     )
-    samples = fields.Char("Samples")
-    production = fields.Char("Production")
-    sample_lead_time = fields.Char("Samples")
-    sample_prd_time = fields.Char("Production")
+    samples = fields.Text("Samples")
+    sample_lead_time = fields.Char("Sample Lead Time")
+    sample_prd_time = fields.Char("Production Lead Time")
 
     # internal use
     ynot_contact_person = fields.Many2one("res.users", "Y-not Contact Person")
@@ -235,13 +239,13 @@ class YnotFactory(models.Model):
 class YnotMaterial(models.Model):
     _name = 'factory.material'
 
-    name = fields.Char("Material")
+    name = fields.Char("Material", required=True)
 
 
 class YnotProductCat(models.Model):
     _name = 'factory.prdcat'
 
-    name = fields.Char("Product Category")
+    name = fields.Char("Product Category", required=True)
 
 
 class YnotMajorClient(models.Model):
@@ -251,7 +255,6 @@ class YnotMajorClient(models.Model):
     name = fields.Char("Name", required=True)
     per_of_business = fields.Float("Percentage of Business")
     country_id = fields.Many2one('res.country', 'Country')
-    sequence = fields.Integer('Sequence')
 
 
 class YnotFactoryContact(models.Model):
@@ -259,11 +262,9 @@ class YnotFactoryContact(models.Model):
 
     factory_id = fields.Many2one('ynot.factory', string='Factory',)
     name = fields.Char("Contact Name", required=True)
-    email = fields.Float("Email")
-    name = fields.Char("City")
+    email = fields.Char("Email")
+    office_phone = fields.Char("Office Phone")
+    cell_phone = fields.Char("CellPhone")
+    city = fields.Char("City")
     country_id = fields.Many2one('res.country', 'Country')
-    company_contact = fields.Char("Company Contact")
-    sale_managers = fields.Char("Sale Managers")
-    head_of_aperation = fields.Char("Head of Operations")
-    c_level_position = fields.Char("C-Level Positions")
-    owner = fields.Char("Owner(s)")
+    

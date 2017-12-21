@@ -1,3 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ynot_project,access_ynot_project,model_ynot_project,base.group_user,1,1,1,1
 access_project_image,access_project_image,model_project_image,base.group_user,1,1,1,1
+access_ynot_factory,access_ynot_factory,model_ynot_factory,base.group_user,1,0,0,0
+access_major_clients,access_major_clients,model_major_clients,base.group_user,1,0,0,0
+access_factory_contact,access_factory_contact,model_factory_contact,base.group_user,1,0,0,0
+access_factory_material,access_factory_material,model_factory_material,base.group_user,1,0,0,0
+access_factory_prdcat,access_factory_prdcat,model_factory_prdcat,base.group_user,1,0,0,0
