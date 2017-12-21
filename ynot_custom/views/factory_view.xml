@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id='ynot_factory_view_form' model='ir.ui.view'>
+        <field name="name">ynot.factory.form</field>
+        <field name="model">ynot.factory</field>
+        <field name="arch" type="xml">
+            <form string="Factory">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <label for="company_address" class="oe_edit_only"/>
+                        <h2>
+                            <field name="company_address" class="oe_inline" />
+                        </h2>
+                    </div>
+
+                    <group >
+                        <group >
+                            <field name="nearest_port"/>
+                            <field name="year_est"/>
+                            <field name="no_of_emp"/>
+                            <field name="company_cert" />
+                            <field name="ecommerce" />
+                        </group>
+                        <group >
+                            <field name="major_airport"/>
+                            <field name="loc_fun" /> 
+                            <field name="company_website" /> 
+                            <field name="is_catelogs"/>
+                            <field name="catalog_updated" attrs="{'invisible': [('is_catelogs','=',False)]}"/>
+                        </group>
+                    </group>
+
+                    <group >
+                        <group string="General Financial Information">
+                            <field name="sale_ten_three" />
+                            <field name="sale_three_three" />
+                            <field name="sale_two_three" />
+                            <field name="sale_last_year"/>
+                        </group>
+                        <group string="Government Licenses" >
+                            <field name="local_lic"/>
+                            <field name="state_lic"/>
+                            <field name="federal_lic"/>
+                        </group>
+                    </group>
+
+                    
+                    <notebook>
+                        <page name="shipping" string="Shipping Information">
+                            <group col="4">
+                                <field name="methods_shipping"/>
+                                <field name="fob_ship"/>
+                                <field name="exworks_ship"/>
+                            </group>
+
+                            <group string="Y-not Internal Use" colspan="2" name="internal_use">
+                                <field name="ynot_contact_person"/>
+                                <field name="english" widget="priority"/>
+                                <field name="cleanliness" widget="priority"/>
+                                
+                            </group>
+                        </page>
+                        <page string="Client Information" name="client">
+                            <group col="2" string="Major Clients">
+                                <field name="major_client_ids" nolabel="1"/>
+                            </group>
+                            <group col="2" string="Top Countries">
+                                <field name="top_country_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Miscellaneous Information" name="misc">
+                            <group>
+                                <group>
+                                    <field name="sample_charges" />
+                                    <field name="con_orders" />
+                                    <field name="con_cont" />
+                                    <field name="prod_testing"/>
+                                </group>
+                                <group>
+                                    <field name="is_prd_engg" />
+                                    <field name="is_threed_modelling" />
+                                    <field name="acceptable_formats" />
+                                    <field name="is_accept_terms"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Contact Information" name="client">
+                            <group col="2" >
+                                <field name="factory_contact_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Business Information" name="client">
+                            <group >
+                                <group>
+                                    <field name="samples"/>
+                                    <field name="production"/>
+                                </group>
+                                <group>
+                                    <field name="sample_lead_time"/>
+                                    <field name="sample_prd_time"/>
+                                </group>
+                            </group>
+                            <group >
+                                <group string="Materials">
+                                    <field name="material_ids" nolabel="1"/>
+                                </group>
+                                <group string="Product Categories/ Ranges">
+                                    <field name="product_cat_ids" nolabel="1"/>
+                                </group>
+                            </group>
+
+                        </page>
+                    </notebook>
+
+                    
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- <record id='ynot_factory_view_form' model='ir.ui.view'>
+        <field name="name">ynot.factory.form</field>
+        <field name="model">ynot.factory</field>
+        <field name="arch" type="xml">
+            <form string="Factory">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <label for="company_address" class="oe_edit_only"/>
+                        <h2>
+                            <field name="company_address" class="oe_inline" />
+                        </h2>
+                    </div>
+                  
+                    <group string="General Information">
+                        <group >
+                            <field name="nearest_port"/>-
+                            <field name="major_airport"/>
+                            <field name="year_est"/>
+                            <field name="no_of_emp"/>
+                            <field name="is_catelogs"/>
+                        </group>
+                        <group >
+                            <field name="loc_fun" />
+                            <field name="company_website" />
+                            <field name="company_cert" />
+                            <field name="ecommerce" />
+                        </group>
+                    </group>
+                    
+                    <group string="General Financial Information" >
+                        <group  >
+                            <field name="sale_ten_three" />
+                            <field name="sale_three_three" />
+                        </group>
+                        <group >
+                            <field name="sale_two_three" />
+                            <field name="sale_last_year"/>
+                        </group>
+                    </group>
+
+                    <group string="Government Licenses" >
+                        <field name="local_lic"/>
+                        <field name="state_lic"/>
+                        <field name="federal_lic"/>
+                    </group>
+                    <notebook>
+                        <page name="shipping" string="Shipping Information">
+                            <group col="4">
+                                <field name="methods_shipping"/>
+                                <field name="fob_ship"/>
+                                <field name="exworks_ship"/>
+                            </group>
+                        </page>
+                        <page string="Client Information" name="client">
+                            <group col="2" string="Major Clients">
+                                <field name="major_client_ids" nolabel="1"/>
+                            </group>
+                            <group col="2" string="Top Countries">
+                                <field name="top_country_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Miscellaneous Information" name="misc">
+                            <group>
+                                <group>
+                                    <field name="sample_charges" />
+                                    <field name="con_orders" />
+                                    <field name="con_cont" />
+                                    <field name="prod_testing"/>
+                                </group>
+                                <group>
+                                    <field name="is_prd_engg" />
+                                    <field name="is_threed_modelling" />
+                                    <field name="acceptable_formats" />
+                                    <field name="is_accept_terms"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+    <record id='ynot_factory_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.factory.tree</field>
+        <field name="model">ynot.factory</field>
+        <field name="arch" type="xml">
+            <tree string="Factory" >
+                <field name="name" />
+                <field name="company_address" />
+                <field name="year_est" />
+                <field name="no_of_emp" />
+                <field name="loc_fun" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id='ynot_factory_action' model='ir.actions.act_window'>
+        <field name="name">Factories</field>
+        <field name="res_model">ynot.factory</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Factory.
+          </p>
+        </field>
+    </record>
+    <menuitem name="Factories" id="menu_factory_root" sequence="116"  web_icon="ynot_custom,static/description/icon.png"/>
+    <menuitem name="Factory Information" parent="menu_factory_root" id="ynot_factory_menu_main" sequence="3"/>
+    <menuitem action="ynot_factory_action" parent="ynot_factory_menu_main" id="ynot_factory_menu" />
+
+    <record id='ynot_major_clients_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.major.clients.tree</field>
+        <field name="model">major.clients</field>
+        <field name="arch" type="xml">
+            <tree string="Major Clients" editable="bottom">
+                 <field name="sequence" widget="handle"/>
+                 <field name="name"/>
+                <field name="per_of_business"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='ynot_factory_contact_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.factory.contact.tree</field>
+        <field name="model">factory.contact</field>
+        <field name="arch" type="xml">
+            <tree string="Contacts" editable="bottom">
+                 
+                <field name="name"/>
+                <field name="email"/>
+                <field name="country_id"/>
+                <field name="company_contact"/>
+                <field name="sale_managers"/>
+                <field name="head_of_aperation"/>
+                <field name="c_level_position"/>
+                <field name="owner"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='ynot_factory_material_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.factory.material.tree</field>
+        <field name="model">factory.material</field>
+        <field name="arch" type="xml">
+            <tree string="Materials" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='ynot_factory_material_action' model='ir.actions.act_window'>
+        <field name="name">Materials</field>
+        <field name="res_model">factory.material</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Material.
+          </p>
+        </field>
+    </record>
+
+    <record id='ynot_factory_prdcat_view_tree' model='ir.ui.view'>
+        <field name="name">ynot.factory.prdcat.tree</field>
+        <field name="model">factory.prdcat</field>
+        <field name="arch" type="xml">
+            <tree string="Product Categories" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id='ynot_factory_prdcat_action' model='ir.actions.act_window'>
+        <field name="name">Product Categories</field>
+        <field name="res_model">factory.prdcat</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Product Category.
+          </p>
+        </field>
+    </record>
+
+    <menuitem action="ynot_factory_material_action" parent="ynot_factory_menu_main" id="ynot_factory_material_menu" />
+    <menuitem action="ynot_factory_prdcat_action" parent="ynot_factory_menu_main" id="ynot_factory_prdcat_menu" />
+
+</odoo>
